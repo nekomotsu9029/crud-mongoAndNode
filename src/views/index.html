@@ -1,0 +1,65 @@
+<%- include('templates/_header', {tituloWeb: 'home'}) %>
+    <main>
+        <div class="container">
+            <h1 class="text-center" >Hola mundo</h1>
+            <p>El saludo del sevidor es: <%=saludo%></p>
+            
+                <div class="row">
+                    <!-- FORM -->
+                    <div class="col-12 col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="/add" method="post" >
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="title" placeholder="Inserta un titulo" value="" >
+                                        <br>
+                                        <textarea class="form-control" cols="80" name="description" placeholder="Describe el objeto" value="" ></textarea>
+                                        <br>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-success" >Añadir</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LIST -->
+                    <div class="col-12 col-xl-8">
+                        <table class="table table-bordered table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>N°</th>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
+                                    <th>Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i < tasks.length; i++){ %>
+                                    <tr>
+                                        <th>#<%= i+1 %>
+                                        </th>
+                                        <th>
+                                            <%=tasks[i].title%>
+                                        </th>
+                                        <th>
+                                            <%=tasks[i].description%>
+                                        </th>
+                                        <th>
+                                            <a href="/estado/<%=tasks[i]._id%>" class="btn <%= tasks[i].status ? 'btn-success' : 'btn-dark'%>" >completada</a>
+                                            <a href="/delete/<%=tasks[i]._id%>" class="btn btn-danger" >eliminar</a>
+                                            <a href="/editar/<%=tasks[i]._id%>" id="modificar" class="btn btn-info" >modificar</a>
+                                        </th>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
